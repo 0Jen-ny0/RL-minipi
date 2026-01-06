@@ -38,6 +38,15 @@ Full demo video: [watch here](https://github.com/user-attachments/assets/7cd875c
 ## GMR
 [GMR](https://github.com/YanjieZe/GMR)
 
+Download [SMPL-X body](https://github.com/vchoutas/smplx) models to `GMR/assets/body_models` from SMPL-X and then structure as follows:
+```bash
+- GMR/assets/body_models/smplx/
+-- SMPLX_NEUTRAL.pkl
+-- SMPLX_FEMALE.pkl
+-- SMPLX_MALE.pkl
+```
+
+
 ```bash
 cd RL-minipi/GMR
 
@@ -61,6 +70,9 @@ cd RL-minipi/whole_body_tracking
 No changes were made to the original repository.
 
 ### GMR
+refer to the robot's urdf file for joint names and order 
+
+GMR processes using rot (w-x-y-z) 
 
 #### Changes
 ### BeyondMimic
