@@ -1,13 +1,18 @@
 # Reinforcement training for hightorque minipi via video input (.mp4)
 ## Overview
-This repository adapts the GVHMR + GMR + BeyondMimic framework for half-body humanoid robotics. The frameworks takes an
+This repository adapts the GVHMR → GMR → BeyondMimic pipeline for half-body humanoid robotics. It should be noted that due to the half-body nature of robot, certain motions that require upper body to balance may be difficult to reproduce.
 
-This repository uses hightorque_minipi as robot model but can be adapted to other half robots. Any changes made to the original code will be documented as reference in the ['Changes & Notes'](#changes--notes) section for other half body robots.
+The frameworks takes an input video of human motion and:
+- [(GVHMR)](https://github.com/zju3dv/GVHMR) reconstructs full-body 3D human motion (pose and global trajectory) from input video.
+- [(GMR)](https://github.com/YanjieZe/GMR) retargets the reconstructed human motion into robot joint motions, producing a trajectory the robot can track.
+- [(BeyondMimic)](https://github.com/HybridRobotics/whole_body_tracking) trains and runs an RL tracking policy so the humanoid robot follows the retargeted motion in simulation.
 
+This repository uses [hightorque_minipi](https://www.hightorquerobotics.com/pi/#) as robot model but can be adapted to other half robots. Any changes made to the original code will be documented as reference in the ['Changes & Notes'](#changes--notes) section to support other half body robots.
+
+---
 ## GVHMR
 
 Please refer to the [GVHMR](https://github.com/zju3dv/GVHMR) repository for environment setup and usage. 
-No changes were made to the original code.
 
 An example can be downloaded [here]() and imported into `GVHMR/outputs/demo/{exercise}` folder
 
@@ -20,10 +25,10 @@ To play the outputted video:
 ffplay outputs/demo/{exercise}/{exercise}_3_incam_global_horiz.mp4
 ```
 
-The output will give you a hmr4d file and a video like this.
+The output will be in the `GVHMR/outputs/demo/{exercise}` folder, including a hmr4d file and video shown below.
 
 <p align="center">
-  <img src="assets/demo/gvhmer_demo.gif" width="420">
+  <img src="exercise/_demo.gif" width="420">
 </p>
 
 Full demo video: [watch here](https://github.com/user-attachments/assets/7cd875c9-f437-4607-ad3a-5d7dcecb2965)
@@ -36,6 +41,7 @@ Full demo video: [watch here](https://github.com/user-attachments/assets/7cd875c
 ## BeyondMimic
 [BeyondMimic](https://github.com/HybridRobotics/whole_body_tracking)
 
+---
 ## Changes & Notes
 ### GVHMR
 No changes were made to the original repository.
