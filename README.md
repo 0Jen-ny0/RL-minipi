@@ -14,7 +14,7 @@ This repository uses [hightorque_minipi](https://www.hightorquerobotics.com/pi/#
 
 Please refer to the [GVHMR](https://github.com/zju3dv/GVHMR) repository for environment setup and usage. 
 
-An example can be downloaded [here]() and imported into `GVHMR/outputs/demo/{exercise}` folder
+An example package 'exercise' can be downloaded from the repository and imported into `GVHMR/outputs/demo/{exercise}` folder.
 
 ```bash
 cd GVHMR
@@ -25,7 +25,7 @@ To play the outputted video:
 ffplay outputs/demo/{exercise}/{exercise}_3_incam_global_horiz.mp4
 ```
 
-The output will be in the `GVHMR/outputs/demo/{exercise}` folder, including a hmr4d file and video shown below.
+The output can be found in the `GVHMR/outputs/demo/{exercise}` folder, including a hmr4d file and the video (example) shown below.
 
 <p align="left">
   <img src="exercise/demo.gif" width="400">
@@ -38,13 +38,28 @@ Full demo video: [watch here](https://github.com/user-attachments/assets/7cd875c
 ## GMR
 [GMR](https://github.com/YanjieZe/GMR)
 
+```bash
+cd RL-minipi/GMR
+
+```
+
+
+
 ## BeyondMimic
 [BeyondMimic](https://github.com/HybridRobotics/whole_body_tracking)
+
+
+```bash
+cd RL-minipi/whole_body_tracking
+
+```
+
 
 ---
 ## Changes & Notes
 ### GVHMR
 No changes were made to the original repository.
+
 ### GMR
 
 #### Changes
