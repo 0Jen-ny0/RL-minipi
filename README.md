@@ -20,7 +20,7 @@ To play the outputted video:
 ffplay outputs/demo/{exercise}/{exercise}_3_incam_global_horiz.mp4
 ```
 
-The output will give you a hmr4d file a video like this.
+The output will give you a hmr4d file and a video like this.
 
 <p align="center">
   <img src="assets/demo/gvhmer_demo.gif" width="420">
@@ -36,7 +36,14 @@ Full demo video: [watch here](https://github.com/user-attachments/assets/7cd875c
 ## BeyondMimic
 [BeyondMimic](https://github.com/HybridRobotics/whole_body_tracking)
 
-## Changes
+## Changes & Notes
+### GVHMR
+No changes were made to the original repository.
+### GMR
+
+#### Changes
+### BeyondMimic
+
 
 
 ## Third-party projects (credits)
