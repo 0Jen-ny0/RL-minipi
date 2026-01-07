@@ -122,18 +122,30 @@ No changes were made to the original repository.
 		  <origin xyz="0 0 0" rpy="0 0 0"/>
 		</joint>
   ```
-2. 
 
+2. Create `smplx_to_hightorque_minipi.json` in `general_motion_retargeting/ik_configs`
+```bash
+"base_link": ["pelvis", 100, 10, [0,0,0], [0.5,-0.5,-0.5,-0.5]]
+"robot_frame_name": ["human_body_name", pos_weight, rot_weight, pos_offset, rot_offset_quat]
+```
 
-refer to the robot's urdf file for joint names and order 
+3. Edit `general_motion_retargeting/param.py`
+   
+```bash
+Add the name of the robot model where # Add robot model
+```
 
-csv file context
-
-
+4. `gvhmr_ro_robots.py`
+   - Add "hightorque_minipi" or other models into 'choices'
+   - Update the correct joint list into 'motion_data' and 'qpos_list'
 
 Note that GMR processes using rotation order (w-x-y-z), but input of BeyondMimic requires rotation order (x-y-z-w), so the output format of .csv file is altered:
   ```bash
-
+csv file context
+            root_pos=qpos[:3],
+            root_rot=qpos[3:7],
+            dof_pos=qpos[7:],
+# refer to the robot's urdf file for joint names and order 
   ```
 
 
