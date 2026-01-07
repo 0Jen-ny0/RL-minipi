@@ -9,23 +9,33 @@ The frameworks takes an input video of human motion and:
 
 This repository uses [hightorque_minipi](https://www.hightorquerobotics.com/pi/#) as robot model but can be adapted to other half robots. Any changes made to the original code will be documented as reference in the ['Changes & Notes'](#changes--notes) section to support other half body robots.
 
+## Import repository
+how to import code...
+
 ---
 ## GVHMR
 
-Please refer to the [GVHMR](https://github.com/zju3dv/GVHMR) repository for environment setup and usage. 
+> [!NOTE]
+> Tested on Ubuntu 22.04.
 
-An example package 'exercise' can be downloaded from the repository and imported into `GVHMR/outputs/demo/{exercise}` folder.
+###  Setup
+> Please refer to the [GVHMR](https://github.com/zju3dv/GVHMR) repository for environment setup and usage. This repository does not redistribute GVHMR code; please follow the upstream installation instructions.
 
+An example package `exercise` is provided in this repository. Download it and place it under `GVHMR/outputs/demo/{exercise}`.
+
+### Run GVHMR
+
+To process the motion video:
 ```bash
 cd GVHMR
 python tools/demo/demo.py --video=outputs/demo/{exercise}/{exercise}.mp4 -s
 ```
-To play the outputted video:
+To play the output video:
 ```bash
 ffplay outputs/demo/{exercise}/{exercise}_3_incam_global_horiz.mp4
 ```
 
-The output can be found in the `GVHMR/outputs/demo/{exercise}` folder, including a hmr4d file and the video (example) shown below.
+Outputs are saved under `GVHMR/outputs/demo/{exercise}`, including the hmr4d file and the rendered preview video (example below).
 
 <p align="left">
   <img src="exercise/demo.gif" width="400">
@@ -36,10 +46,19 @@ Full demo video: [watch here](https://github.com/user-attachments/assets/7cd875c
 
 
 ## GMR
-[GMR](https://github.com/YanjieZe/GMR)
+> [!NOTE]
+> Tested on Ubuntu 22.04.
+> This repository is based on [GMR](https://github.com/YanjieZe/GMR) and includes modifications to support the `hightorque_minipi` model.
 
+### Setup
+Create your conda environment:
+```bash
+conda create -n gmr python=3.10 -y
+conda activate gmr
+conda install -c conda-forge libstdcxx-ng -y
+```
 
-Download [SMPL-X body](https://github.com/vchoutas/smplx) models to `GMR/assets/body_models` from SMPL-X and then structure as follows:
+Download the [SMPL-X body](https://github.com/vchoutas/smplx) models and place them in `GMR/assets/body_models`, following this structure:
 ```bash
 - GMR/assets/body_models/smplx/
 -- SMPLX_NEUTRAL.pkl
@@ -47,21 +66,36 @@ Download [SMPL-X body](https://github.com/vchoutas/smplx) models to `GMR/assets/
 -- SMPLX_MALE.pkl
 ```
 
-
+### Run GMR
+Go to the GMR directory:
 ```bash
 cd RL-minipi/GMR
-
 ```
 
-takes input from GVHMR folder
+Run the command below to retarget the extracted human pose data to your robot:
 ```bash
-
-
+python scripts/gvhmr_to_robot.py
+--robot hightorque_minipi
+--gvhmr_pred_file ~RL-minipi/GVHMR/outputs/demo/{exercise}/hmr4d_results.pt
+--record_video   --rate_limit
+--save_path outputs/demo/{exercise}.csv
 ```
+
+The output `.csv` will be saved to `GMR/outputs/demo`.
 
 
 ## BeyondMimic
+> [!NOTE]
+> The code is tested on Ubuntu 22.04, using IsaacSim 5.1 and IsaacLab V2.1.0
+
+
 [BeyondMimic](https://github.com/HybridRobotics/whole_body_tracking)
+
+Copy the .csv output from GMR first into the `whole_body_tracking` folder.
+```bash
+cp 
+
+```
 
 
 ```bash
@@ -93,7 +127,15 @@ No changes were made to the original repository.
 
 refer to the robot's urdf file for joint names and order 
 
-GMR processes using rotation order (w-x-y-z) 
+csv file context
+
+
+
+Note that GMR processes using rotation order (w-x-y-z), but input of BeyondMimic requires rotation order (x-y-z-w), so the output format of .csv file is altered:
+  ```bash
+
+  ```
+
 
 #### Changes
 ### BeyondMimic
