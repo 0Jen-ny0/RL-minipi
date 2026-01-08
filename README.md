@@ -89,21 +89,56 @@ The output `.csv` will be saved to `GMR/outputs/demo` and video saved to `GMR/vi
 > [!NOTE]
 > The code is tested on Ubuntu 22.04, using IsaacSim 5.1 and IsaacLab V2.1.0
 
+### Installation & Setup
+
 
 [BeyondMimic](https://github.com/HybridRobotics/whole_body_tracking)
 
+cd RL-minipi/whole_body_tracking
+python -m pip install -e source/whole_body_tracking
+
 Copy the .csv output from GMR first into the `whole_body_tracking` folder.
 ```bash
-cp 
-
+cp ~/RL-minipi/GMR/outputs/demo/*.csv ~/RL-minipi/whole_body_tracking/
 ```
 
 
 ```bash
 cd RL-minipi/whole_body_tracking
+```
+
+
+### Run BeyondMimic
+
+#### Pre-processing + WandB setup
+
+Log in to your WandB account; access Registry under Core on the left. Create a new registry collection with the name "Motions" and artifact type "All Types".
+
+Convert csv into npz and upload into WandB:
+```bash
 
 ```
 
+Replay the uploaded motion:
+```bash
+python scripts/replay_npz.py --registry_name=jennyjlq2004-university-college-london-ucl--org/wandb-registry-motions/dance1_subject1
+```
+
+
+#### Policy training
+Train policy by the following command:
+```bash
+python scripts/rsl_rl/train.py
+--task=Tracking-Flat-MiniPi-v0
+--registry_name=jennyjlq2004-university-college-london-ucl--org/wandb-registry-motions/{exercise}:latest
+--headless   --logger=wandb
+--log_project_name=whole-body-tracking
+--run_name={exercise}
+```
+Play the trained policy by the following command:
+```bash
+
+```
 
 ---
 ## Changes & Notes
@@ -168,7 +203,7 @@ Remove the floating point in the urdf:
 
 ```bash
 # Update ARMATURE + velocity according to the robot's specification
-# (J_rotor + J_reducer)* 1e-6 * N^2
+# Armature = (J_rotor + J_reducer)* 1e-6 * N^2
 # Replace all variables with robot model name (Ctrl+F:minipi)
 # Update the joint variables
 ```
