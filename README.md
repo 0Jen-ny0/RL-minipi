@@ -89,39 +89,42 @@ The output `.csv` will be saved to `GMR/outputs/demo` and video saved to `GMR/vi
 > [!NOTE]
 > The code is tested on Ubuntu 22.04, using IsaacSim 5.1 and IsaacLab V2.1.0
 
-### Installation & Setup
+### Installation
+> This repository is based on [BeyondMimic](https://github.com/HybridRobotics/whole_body_tracking) and includes modifications to support the `hightorque_minipi` model.
 
-
-[BeyondMimic](https://github.com/HybridRobotics/whole_body_tracking)
-
-cd RL-minipi/whole_body_tracking
-python -m pip install -e source/whole_body_tracking
-
-Copy the .csv output from GMR first into the `whole_body_tracking` folder.
+Install Isaac Sim and Isaac Lab and create the conda environment:
 ```bash
-cp ~/RL-minipi/GMR/outputs/demo/*.csv ~/RL-minipi/whole_body_tracking/
+wget -O install_isaaclab.sh https://docs.robotsfan.com/install_isaaclab.sh && bash install_isaaclab.sh # One-line installation code
+conda activate {environment}
 ```
+Or install specific version of [Isaac Sim](https://docs.isaacsim.omniverse.nvidia.com/5.1.0/installation/download.html) and [Isaac Lab](https://isaac-sim.github.io/IsaacLab/v2.1.0/source/setup/installation/index.html).
 
 
-```bash
-cd RL-minipi/whole_body_tracking
-```
 
 
 ### Run BeyondMimic
 
 #### Pre-processing + WandB setup
 
-Log in to your WandB account; access Registry under Core on the left. Create a new registry collection with the name "Motions" and artifact type "All Types".
+Copy the .csv output from GMR into the `whole_body_tracking` folder.
+```bash
+cp ~/RL-minipi/GMR/outputs/demo/*.csv ~/RL-minipi/whole_body_tracking/
+cd RL-minipi/whole_body_tracking
+conda activate {environment}
+python -m pip install -e source/whole_body_tracking
+```
+
+
+Log in to your [WandB](https://wandb.ai/home) account; access Registry under Core on the left. Create a new registry collection with the name "Motions" and artifact type "All Types".
 
 Convert csv into npz and upload into WandB:
 ```bash
-
+python scripts/csv_to_npz.py --input_file {exercise}.csv --input_fps 30 --output_name {exercise} --headless
 ```
 
-Replay the uploaded motion:
+To replay the uploaded motion:
 ```bash
-python scripts/replay_npz.py --registry_name=jennyjlq2004-university-college-london-ucl--org/wandb-registry-motions/dance1_subject1
+python scripts/replay_npz.py --registry_name={your-organization}--org/wandb-registry-motions/{exercise}
 ```
 
 
@@ -217,12 +220,16 @@ Remove the floating point in the urdf:
 # Update 'self.commands.motion.body_names'
 ```
 
-5.Edit `csv_to_npz.py`
+5.Edit `csv_to_npz.py` in `scripts`
 ```bash
 # Replace all variables with robot model name (Ctrl+F:minipi)
 # Replace the 'joint_names' (same as gvhmr)
 ```
 
+6.Edit `replay_npz` in `scripts`
+```bash
+# Replace all variables with robot model name (Ctrl+F:minipi)
+```
 
 ## Third-party projects (credits)
 
