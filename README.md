@@ -9,6 +9,10 @@ The framework takes an input video of human motion and:
 
 This repository uses [hightorque_minipi](https://www.hightorquerobotics.com/pi/#) as the robot model, but it can be adapted to other reduced-DoF humanoid platforms. All deviations from upstream projects are documented in the ['Changes & Notes'](#changes--notes) section.
 
+| Sideway walk | Stomping |
+|---|---|
+| <img src="exercise/demo/sideway_walk.gif" width="450"> | <img src="exercise/demo/stomping.gif" width="450"> |
+
 To import repository:
 ```bash
 git clone https://github.com/0Jen-ny0/RL-minipi.git
