@@ -225,14 +225,18 @@ Remove the floating joint in the urdf:
 # Replace all variables with robot model name (Ctrl+F:minipi)
 # Update 'self.commands.motion.body_names'
 ```
+5.Edit `tracking_env_cfg` in `source/whole_body_tracking/whole_body_tracking/tasks/tracking`
+```bash
+# Modify 'self.episode_length_s' to desired length
+```
 
-5.Edit `csv_to_npz.py` in `scripts`
+6.Edit `csv_to_npz.py` in `scripts`
 ```bash
 # Replace all variables with robot model name (Ctrl+F:minipi)
 # Replace the 'joint_names' (same as gvhmr)
 ```
 
-6.Edit `replay_npz` in `scripts`
+7.Edit `replay_npz` in `scripts`
 ```bash
 # Replace all variables with robot model name (Ctrl+F:minipi)
 ```
