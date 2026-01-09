@@ -11,7 +11,7 @@ This repository uses [hightorque_minipi](https://www.hightorquerobotics.com/pi/#
 
 | Sideway walk | Stomping |
 |---|---|
-| <img src="exercise/demo/gifs/sideway_walk.gif" width="350"> | <img src="exercise/demo/gifs/stomping.gif" width="350"> |
+| <img src="exercise/demo/gifs/sideway_walk.gif" width="380"> | <img src="exercise/demo/gifs/stomping.gif" width="380"> |
 
 To import repository:
 ```bash
@@ -91,7 +91,7 @@ The output `.csv` will be saved to `GMR/outputs/demo` and video saved to `GMR/vi
 
 | Squat | Feet up|
 |---|---|
-| <img src="exercise/demo/gifs/squat_gmr.gif" width="350"> | <img src="exercise/demo/gifs/feetup_gmr.gif" width="350"> |
+| <img src="exercise/demo/gifs/squat_gmr.gif" width="380"> | <img src="exercise/demo/gifs/feetup_gmr.gif" width="380"> |
 
 
 ## BeyondMimic
@@ -159,11 +159,11 @@ python scripts/rsl_rl/play.py \
 
 | Sideway walk |
 |---|
-| <img src="exercise/demo/gifs/sideway_walk.gif" width="600"> |
+| <img src="exercise/demo/gifs/sideway_walk.gif" width="700"> |
 
 | Stomping |
 |---|
-| <img src="exercise/demo/gifs/stomping.gif" width="600"> |
+| <img src="exercise/demo/gifs/stomping.gif" width="700"> |
 
 ---
 ## Changes & Notes
